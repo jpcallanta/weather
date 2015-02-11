@@ -155,13 +155,3 @@ class Weather
     puts ""
   end
 end
-
-# MAIN
-if ARGV.count == 0 
-  puts "Missing zipcode argument"
-  exit 
-end
-
-weather = Weather.new(ARGV[0])
-
-weather.show_report
