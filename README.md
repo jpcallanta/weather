@@ -5,4 +5,4 @@ Gets weather data from weather.gov
 gem build weather.gemspec
 
 # Usage
-weather <zipcode>
+weather [zipcode]
