@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby 
 
-require './weather'
+require 'weather'
 
 # MAIN
 if ARGV.count == 0 
