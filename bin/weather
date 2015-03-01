@@ -10,4 +10,4 @@ end
 
 weather = Weather.new(ARGV[0])
 
-weather.show_report
+puts weather.show_min_max_temps
