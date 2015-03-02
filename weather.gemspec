@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.authors  = ['John Calanta']
   s.email = 'jp@callanta.net'
   s.files  = ['lib/weather.rb']
-  s.homepage  = ''
+  s.homepage  = 'http://john.callanta.net'
   s.license  = 'Apache'
 end
