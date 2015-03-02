@@ -5,7 +5,7 @@ require 'weather'
 # MAIN
 if ARGV.count == 0 
   puts "Missing zipcode argument"
-  exit 
+  exit 1
 end
 
 weather = Weather.new(ARGV[0])
