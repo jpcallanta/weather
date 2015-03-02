@@ -18,16 +18,21 @@ class Weather
       exit 1
     end
 
-    @min_max_layout_key = get_min_max_layout_key
+    @max_layout_key = get_max_layout_key
+    @min_layout_key = get_min_layout_key
     @forecast_key = get_forecast_key
     @time_line =
-      @doc.xpath("//time-layout[layout-key='#{@min_max_layout_key}']").search('start-valid-time')
+      @doc.xpath("//time-layout[layout-key='#{@max_layout_key}']").search('start-valid-time')
     @time_line_forecast =
       @doc.xpath("//time-layout[layout-key='#{@forecast_key}']").search('start-valid-time')
   end
 
-  def get_min_max_layout_key
+  def get_max_layout_key
     return @doc.xpath('//time-layout/layout-key')[0].text
+  end
+
+  def get_min_layout_key
+    return @doc.xpath('//time-layout/layout-key')[1].text
   end
 
   def get_forecast_key
@@ -35,8 +40,8 @@ class Weather
   end
 
   def get_min_max_temps
-    max_temps = @doc.xpath("//temperature[@time-layout='#{@min_max_layout_key}']").search('value')
-    min_temps = @doc.xpath("//temperature[@time-layout='#{@min_max_layout_key}']").search('value')
+    max_temps = @doc.xpath("//temperature[@time-layout='#{@max_layout_key}']").search('value')
+    min_temps = @doc.xpath("//temperature[@time-layout='#{@min_layout_key}']").search('value')
     count = 0
 
     @time_line.each do |tl|
