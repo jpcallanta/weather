@@ -77,7 +77,7 @@ class Weather
       if v[:condition].nil?
         puts "#{k} - N/A"
       else
-        puts "#{k} - #{v[:condition]} Chance of Precipitation:#{v[:precip]}%"
+        puts "#{k} - #{v[:condition]} Precipitation:#{v[:precip]}%"
       end
     end
   end
