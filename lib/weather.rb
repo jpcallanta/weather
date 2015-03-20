@@ -80,21 +80,21 @@ class Weather
       if v[:condition].nil?
         puts "#{k} - N/A"
       else
-        puts "#{k} - #{v[:condition]} Precipitation:#{v[:precip]}%"
+        puts "#{k} - #{v[:condition]}, Precipitation:#{v[:precip]}%"
       end
     end
   end
 
   def show_min_max_temps
-    self.get_min_max_temps()
+    self.get_min_max_temps
 
     puts "Temps, next #{@min_max_forecast.count} days for #{@zipcode}".colorize(:blue)
 
     @min_max_forecast.each do |k, v|
       if v[:min] == ''
-        puts "#{k} - Max:#{v[:max]}F Min:N/A"
+        puts "#{k} - Max:#{v[:max]}F, Min:N/A"
       else
-        puts "#{k} - Max:#{v[:max]}F Min:#{v[:min]}F"
+        puts "#{k} - Max:#{v[:max]}F, Min:#{v[:min]}F"
       end
     end
 
