@@ -3,14 +3,22 @@ require 'nokogiri'
 require 'colorize'
 
 class Weather
-  def initialize(zipcode)
+  def initialize(zipcode, options)
     @zipcode = zipcode
     @min_max_forecast = Hash.new
     @forecast = Hash.new
-    @xml_forecast = "http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php?zipCodeList=#{@zipcode}&format=12+hourly&numDays=10&Unit=e&snow=snow"
+    @xml_forecast = "http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php?zipCodeList=#{@zipcode}&format=12+hourly"
+    @snow_forecast = "http://graphical.weather.gov/xml/SOAP_server/ndfdXMLclient.php?whichClient=NDFDgenMultiZipCode&zipCodeList=#{@zipcode}&propertyName=&product=time-series&Unit=e&maxt=maxt&snow=snow"
 
     begin
-      @doc = Nokogiri::HTML(open(@xml_forecast))
+      case options
+      when 'snow'
+        @doc = Nokogiri::HTML(open(@snow_forecast))
+      when 'all'
+        @doc = Nokogiri::HTML(open(@xml_forecast))
+        @doc_snow = Nokogiri::HTML(open(@snow_forecast))
+      else
+        @doc = Nokogiri::HTML(open(@xml_forecast))
     rescue Exception => e
       puts e.message
       exit 1
